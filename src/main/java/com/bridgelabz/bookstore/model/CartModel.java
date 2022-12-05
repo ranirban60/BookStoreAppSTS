@@ -7,10 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
 public class CartModel {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "cartId", nullable = false)
@@ -25,6 +27,11 @@ public class CartModel {
 	BookModel book;
 
 	int quantity;
+	
+
+	public CartModel() {
+		super();
+	}
 
 	public CartModel(UserModel user, BookModel book, int quantity) {
 		this.user = user;

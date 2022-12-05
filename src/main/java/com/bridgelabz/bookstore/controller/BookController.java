@@ -3,6 +3,7 @@ package com.bridgelabz.bookstore.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.bridgelabz.bookstore.service.IBookService;
 
 @RestController
 @RequestMapping("/Book")
+@CrossOrigin("http://localhost:3000")
 public class BookController {
 
     @Autowired
@@ -31,7 +33,7 @@ public class BookController {
         return new ResponseEntity(book, "Book added Succesfully");
     }
     
-    @GetMapping("/findAll")
+    @GetMapping("/getallbook")
     public List<BookDto> getAllDetails() {
 		return this.bookService.getAllBook();
 	}

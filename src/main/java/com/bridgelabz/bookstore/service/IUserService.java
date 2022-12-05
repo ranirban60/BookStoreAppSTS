@@ -14,6 +14,8 @@ public interface IUserService {
 
 	UserDto findById(Long Id);
 
+	UserDto getUserByLogin(String token);
+
 	UserDto getUserByEmail(String email);
 
 	UserDto editUserByEmail(String email_address, UserDto userDto);
@@ -27,4 +29,3 @@ public interface IUserService {
 	String resetPassword(UserDto userDto);
 
 }
-

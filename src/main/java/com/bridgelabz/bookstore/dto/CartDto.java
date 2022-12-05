@@ -6,7 +6,7 @@ public class CartDto {
 	int quantity;
 
 	public CartDto() {
-		super();
+		
 	}
 
 	public Long getUserId() {

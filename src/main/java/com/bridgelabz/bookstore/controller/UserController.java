@@ -47,6 +47,12 @@ public class UserController {
 		return new ResponseEntity(user, "Find successfully");
 	}
 	
+	@GetMapping("/getuserbytoken")
+	public ResponseEntity getUserByLogin(@RequestHeader String token) {
+		UserDto userDto = userService.getUserByLogin(token);
+		return new ResponseEntity(userDto, "Fetched user details");
+	}
+	
 	@GetMapping("/getUserByEmail/{email}")
 	public ResponseEntity getDataByEmail(@PathVariable String email) {
 		UserDto user = userService.getUserByEmail(email);

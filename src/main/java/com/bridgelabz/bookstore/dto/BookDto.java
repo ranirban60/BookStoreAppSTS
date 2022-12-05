@@ -6,13 +6,22 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class BookDto {
-
+    
+	public String bookId;
 	public String bookName;
 	public int price;
 	public String authorName;
 	public int bookQuantity;
 	public String bookImage;
 	public String bookDescription;
+	
+	public String getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(String bookId) {
+		this.bookId = bookId;
+	}
 
 	public String getBookName() {
 		return bookName;

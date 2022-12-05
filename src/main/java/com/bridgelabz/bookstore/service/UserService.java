@@ -62,7 +62,20 @@ public class UserService implements IUserService {
 		UserDto userDto = modelMapper.map(user.get(), UserDto.class);
 		return userDto;
 	}
-
+	
+	@Override
+	   public UserDto getUserByLogin(String token) {
+		   LoginDto loginDto = jwtTokenUtil.decode(token);
+			Optional<UserModel> userModel = userRepo.findByEmailAndPassword(loginDto.getEmail(), loginDto.getPassword());
+			if (userModel.get().getIsLogin().equals(true)) {
+				UserDto userDto = modelMapper.map(userModel.get(), UserDto.class);
+				System.out.println("Get the data successfully ");
+				return userDto;
+			} else {
+				throw new UserException("Data not found");
+			}
+		}
+	
 	@Override
 	public UserDto getUserByEmail(String email) {
 		Optional<UserModel> user = userRepo.findByEmail(email);
@@ -99,7 +112,7 @@ public class UserService implements IUserService {
 			}
 		}
 		String token = jwtTokenUtil.generateToken(loginDto);
-//		user.get().setIsLogin(true);
+		user.get().setIsLogin(true);
 		userRepo.save(user.get());
 //		System.out.println("Check the user is login or not " + user.get().getIsLogin());
 		return token;
@@ -107,11 +120,11 @@ public class UserService implements IUserService {
 
 	@Override
 	public UserDto logout(String token) {
-		UserDto userDto = jwtTokenUtil.decode(token);
+		LoginDto userDto = jwtTokenUtil.decode(token);
 		Optional<UserModel> checkUserDetails = userRepo.findByEmailAndPassword(userDto.getEmail(),
 				userDto.getPassword());
 		UserDto logout = modelMapper.map(checkUserDetails, UserDto.class);
-//		checkUserDetails.get().setIsLogin(false);
+		checkUserDetails.get().setIsLogin(false);
 		userRepo.save(checkUserDetails.get());
 		return logout;
 	}
@@ -137,4 +150,8 @@ public class UserService implements IUserService {
 			return "Password is not Valid";
 		}
 	}
+
+   
+
+
 }

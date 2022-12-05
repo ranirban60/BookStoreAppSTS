@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bridgelabz.bookstore.ResponseEntity;
-import com.bridgelabz.bookstore.dto.BookDto;
 import com.bridgelabz.bookstore.dto.CartDto;
-import com.bridgelabz.bookstore.dto.UserDto;
 import com.bridgelabz.bookstore.exception.BookException;
 import com.bridgelabz.bookstore.model.BookModel;
 import com.bridgelabz.bookstore.model.CartModel;
